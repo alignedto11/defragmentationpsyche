@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEFRAG: Cognitive Operating System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+Intl:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+              sans: ['"Suisse Intl"', '"Inter"', 'sans-serif'],
+              old: ['"UnifrakturMaguntia"', 'cursive'],
+            },
+            colors: {
+              obsidian: '#050505', 
+              'void-light': '#0A0A0A', 
+              'signal-white': '#FFFFFF',
+              'bone': '#F2F0E4', 
+              'tech-gold': '#E4E4E7', 
+              'friction-red': '#FF3333', 
+            },
+            backgroundImage: {
+              'black-continuum': 'radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 80%)', 
+              'gold-gradient': 'linear-gradient(135deg, #FBF5E6 0%, #BF953F 25%, #AA771C 50%, #BF953F 75%, #FBF5E6 100%)',
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shimmer': 'shimmer 2s linear infinite',
+              'blink': 'blink 1s step-end infinite',
+              'spin-slow': 'spin 12s linear infinite',
+            },
+            keyframes: {
+              shimmer: {
+                '0%': { backgroundPosition: '-1000px 0' },
+                '100%': { backgroundPosition: '1000px 0' }
+              },
+              blink: {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        background-color: #050505;
+        font-size: 18px; /* Increased base size for better readability on high-res screens */
+        letter-spacing: -0.01em; 
+        scroll-snap-type: y mandatory;
+        scroll-padding-top: 50px;
+      }
+      body {
+        background-color: #050505;
+        color: #ECECEC; /* 93% White for reduced eye strain vs pure black */
+        line-height: 1.6; 
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        color: #FFFFFF; /* Pure white for hierarchy */
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      /* Film Grain Noise Overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 998;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+      
+      /* Vignette Overlay */
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 999;
+        background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.5) 100%);
+      }
+
+      ::selection {
+        background: #E4E4E7;
+        color: #000;
+      }
+      /* Kinetic Law: Precise Motion */
+      * {
+        transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1); 
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #E4E4E7;
+      }
+
+      .text-gold-gradient {
+        background: linear-gradient(135deg, #FBF5E6 0%, #BF953F 25%, #AA771C 50%, #BF953F 75%, #FBF5E6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% auto;
+        animation: shine 5s linear infinite;
+      }
+      
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
+    "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
+    "three": "https://aistudiocdn.com/three@^0.181.1",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.553.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
